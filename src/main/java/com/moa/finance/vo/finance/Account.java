@@ -25,7 +25,7 @@ public class Account {
 
     // TODO. User 객체에서 매핑
     private String owner;
-    
+
     private LocalDate birthDate;
 
     private String productName;
