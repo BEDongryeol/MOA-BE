@@ -13,6 +13,7 @@ public class MoaGoalController {
     // 목표 저장 진행이 되었을때
     @GetMapping("/setgoal")
     public @RequestBody MoaChallenge setGoal(@RequestParam(value = "userId", required = false)int userId) {
+        
         return null;
     }
 
