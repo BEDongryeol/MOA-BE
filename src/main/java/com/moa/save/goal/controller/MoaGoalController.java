@@ -11,6 +11,7 @@ public class MoaGoalController {
     @GetMapping("/setgoal")
     public void setGoal() {
 
+        
     }
 
     // 사용자가 모으기 탭 눌렀을때 보여지는 페이지
