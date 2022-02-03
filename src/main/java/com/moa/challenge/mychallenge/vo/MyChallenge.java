@@ -22,7 +22,7 @@ public class MyChallenge {
 
     // 챌린지 번호 (MoaChallengeDB의 id값을 가져온다) , 다:1의 개념으로 설계
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="myChallengeId")
+    @JoinColumn(name="moa_challenge_id")
     private MoaChallenge moaChallenge;
 
     private Integer mychallengeKey;                 // 열쇠
