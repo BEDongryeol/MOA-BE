@@ -48,5 +48,6 @@ public class UserGoal {
     private String backImageUrl;    // 은행 로고 이미지주소
 
 
+    
 
 }
