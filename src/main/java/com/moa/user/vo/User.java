@@ -3,6 +3,7 @@ package com.moa.user.vo;
 import com.moa.challenge.mychallenge.vo.MyChallenge;
 import lombok.*;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class User {
     @OneToMany                              //주인은 myChallange가 되고, ,myChallange에서 JoinColumn을 해준다.
     @JoinColumn(name = "mychallange_id")
     private List<MyChallenge> mychallenge = new ArrayList<>();
+
 
 }
 

@@ -52,4 +52,6 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<TransactionHistory> histories = new ArrayList<>();
 
+    public Account() {}
+
 }
