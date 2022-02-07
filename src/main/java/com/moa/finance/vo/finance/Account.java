@@ -32,12 +32,4 @@ public class Account {
 
     private LocalDate expirationDate;
 
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "account")
-    private List<TransactionHistory> histories = new ArrayList<>();
-
-    public Account() {}
-
-=======
->>>>>>> develop-inwoo
 }
