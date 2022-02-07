@@ -1,6 +1,5 @@
 package com.moa.finance.vo.dummy;
 
-import com.moa.finance.vo.finance.Account;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,11 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString(exclude = "account")
-public class TransactionHistory {
+public class BankTransactionHistory {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Account account;
+    private BankAccount account;
     private BigDecimal amount;
     private BigDecimal balance;
     private String memo;
