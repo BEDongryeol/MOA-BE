@@ -47,6 +47,4 @@ public class UserGoal {
     private BigDecimal accountCurrentAmount; // 잔액
     private String backImageUrl;    // 은행 로고 이미지주소
 
-    
-
 }
