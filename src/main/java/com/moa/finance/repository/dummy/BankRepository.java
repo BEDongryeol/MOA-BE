@@ -1,4 +1,4 @@
-package com.moa.finance.repository;
+package com.moa.finance.repository.dummy;
 
 import com.moa.finance.vo.dummy.Bank;
 import org.springframework.data.jpa.repository.JpaRepository;
