@@ -1,14 +1,25 @@
 package com.moa.user.vo;
 
+<<<<<<< HEAD
 import com.moa.challenge.mychallenge.vo.MyChallenge;
 import lombok.*;
 
 
 import javax.persistence.*;
+=======
+import com.moa.finance.vo.finance.UserAccount;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+>>>>>>> develop-inwoo
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+<<<<<<< HEAD
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -48,6 +59,21 @@ public class User {
     private List<MyChallenge> mychallenge = new ArrayList<>();
 
 
+=======
+@Getter
+@Setter
+@ToString(exclude = "userAccount")
+public class User {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserAccount> userAccount = new ArrayList<>();
+>>>>>>> develop-inwoo
 }
 
 

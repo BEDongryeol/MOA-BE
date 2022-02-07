@@ -1,10 +1,8 @@
-package com.moa.finance.vo.dummy;
+package com.moa.finance.vo.finance;
 
-import com.moa.finance.vo.finance.Account;
+import com.moa.finance.vo.dummy.BankAccount;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,12 +10,12 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString(exclude = "account")
-public class TransactionHistory {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserTransactionHistory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Account account;
+    private BankAccount account;
     private BigDecimal amount;
     private BigDecimal balance;
     private String memo;
