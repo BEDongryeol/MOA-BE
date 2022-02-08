@@ -3,6 +3,7 @@ package com.moa.finance.repository.finance;
 import com.moa.finance.repository.dummy.BankAccountRepository;
 import com.moa.finance.vo.dummy.BankAccount;
 import com.moa.finance.vo.finance.UserAccount;
+import com.moa.user.repository.UserRepository;
 import com.moa.user.vo.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,5 +47,30 @@ class UserAccountRepositoryTest {
         }
         System.out.println("==========================");
         userAccountRepository.findUserAccounts(1L).forEach(System.out::println);
+    }
+
+    @DisplayName("2. 유저가 가입한 적금 상품의 은행 id 조회")
+    @Test
+    @Transactional
+    void selectUserSavingProductsTest(){
+        User user = userRepository.getById(1L);
+        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(user.getName(), user.getBirthDate());
+        bankAccounts.forEach(System.out::println);
+
+        System.out.println("==========================");
+        if (bankAccounts.size() == 0) {
+            System.out.println("불러올 계좌가 존재하지 않습니다.");
+        } else {
+            for (BankAccount bankAccount : bankAccounts) {
+                UserAccount userAccount = new UserAccount();
+                userAccount.setAccount(bankAccount.getAccount());
+                userAccount.setBank(bankAccount.getBank());
+                userAccount.addUserAccount(user);
+                userAccountRepository.save(userAccount);
+            }
+        }
+        System.out.println("==========================");
+
+        userAccountRepository.findSignedBankId(1L, "장병내일준비적금").forEach(System.out::println);
     }
 }
