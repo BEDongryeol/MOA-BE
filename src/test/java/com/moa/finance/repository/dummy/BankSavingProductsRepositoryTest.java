@@ -1,15 +1,15 @@
 package com.moa.finance.repository.dummy;
 
 import com.moa.finance.repository.finance.UserAccountRepository;
-import com.moa.finance.repository.finance.UserRepository;
+import com.moa.finance.vo.dummy.BankAccount;
 import com.moa.finance.vo.dummy.BankSavingProducts;
 import com.moa.finance.vo.finance.Account;
 import com.moa.finance.vo.finance.UserAccount;
+import com.moa.user.repository.UserRepository;
 import com.moa.user.vo.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.mockito.Mockito.*;
 
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +30,8 @@ class BankSavingProductsRepositoryTest {
     private BankRepository bankRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BankAccountRepository bankAccountRepository;
 
     @Mock
     private UserAccountRepository userAccountRepository;
@@ -58,22 +60,32 @@ class BankSavingProductsRepositoryTest {
 
     @DisplayName("4. 유저가 가지고 있지 않은 적금 상품만 조회")
     @Test
+    @Transactional
     void getSavingProductsUserDoesNotSignedFor(){
-        // User에 신한 장병내일준비적금,
-        when(userAccountRepository.findUserAccounts(1L))
-                .thenReturn(this.getUserAccounts());
-        List<UserAccount> accounts = userAccountRepository.findUserAccounts(1L);
+        User user = userRepository.getById(1L);
+        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(user.getName(), user.getBirthDate());
+        bankAccounts.forEach(System.out::println);
 
-        User user = userRepository.findById(1L).orElse(null);
-        for (UserAccount account : accounts) {
-            user.getUserAccount().add(account);
+        System.out.println("==========================");
+        if (bankAccounts.size() == 0) {
+            System.out.println("불러올 계좌가 존재하지 않습니다.");
+        } else {
+            for (BankAccount bankAccount : bankAccounts) {
+                UserAccount userAccount = new UserAccount();
+                userAccount.setAccount(bankAccount.getAccount());
+                userAccount.setBank(bankAccount.getBank());
+                userAccount.addUserAccount(user);
+                userAccountRepository.save(userAccount);
+            }
         }
-        user.getUserAccount().forEach(System.out::println);
+        System.out.println("==========================");
 
+        System.out.println("====================");
+        List<Long> Ids = userAccountRepository.findSignedBankId(1L, "장병내일준비적금");
+        List<BankSavingProducts> list = bankSavingProductsRepository.findSavingProducts(Ids);
+        list.forEach(System.out::println);
+        System.out.println("====================");
 
-
-
-//        System.out.println(bankSavingProductsRepository.findSavingProducts(1L));
     }
 
     private List<UserAccount> getUserAccounts(){
@@ -89,11 +101,12 @@ class BankSavingProductsRepositoryTest {
         account2.setProductName("장병내일준비적금");
 
         userAccount2.setAccount(account1);
-        userAccount2.setBank(bankRepository.findById(1L).orElse(null));
+        userAccount2.setBank(bankRepository.findById(2L).orElse(null));
 
         List<UserAccount> accounts = new ArrayList<>();
         accounts.add(userAccount1);
         accounts.add(userAccount2);
+
         return accounts;
 
     }
