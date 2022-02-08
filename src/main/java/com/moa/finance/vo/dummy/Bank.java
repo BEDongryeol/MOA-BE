@@ -1,20 +1,21 @@
 package com.moa.finance.vo.dummy;
 
-import com.moa.finance.vo.finance.Account;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
+@ToString
+@NoArgsConstructor
 public class Bank {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String bankName;
 
-    @OneToMany(mappedBy = "bank")
-    private List<Account> accounts = new ArrayList<>();
+    private String bankImageUrl;
+
 }
