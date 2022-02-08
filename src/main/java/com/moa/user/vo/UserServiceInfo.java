@@ -27,7 +27,8 @@ public class UserServiceInfo {
 
     private String militaryUnit;
 
-    @OneToOne(mappedBy = "userServiceInfo")
+    @OneToOne
+    @JoinColumn(name = "USER_ID")           //군번으로 매핑해야 함
     private User user;
 
 
