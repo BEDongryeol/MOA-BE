@@ -13,12 +13,10 @@ public interface BankSavingProductsRepository extends JpaRepository<BankSavingPr
 
     // TODO. user가 가지고 있는 적금 상품은 제외한 상품만 보여주기
     // 사용자가 가입한 군적금상품 조회
+
     @Query(value = "select b from BankSavingProducts b " +
-                   "left join UserAccount u " +
-                   "on b.productName=u.account.productName and " +
-                   "b.bank.bankName=u.bank.bankName " +
-                   "where u.user.id=:userId")
-    List<BankSavingProducts> findSavingProducts(@Param("userId") Long userId);
+                   "where b.bank.id not in (:bankIds)")
+    List<BankSavingProducts> findSavingProducts(@Param("bankIds") List<Long> bankIds);
 
 
     // 최고금리순 데이터 조회
