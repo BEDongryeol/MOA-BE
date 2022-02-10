@@ -1,5 +1,8 @@
-package com.moa.meta;
+package com.moa.constant;
 
+import lombok.Getter;
+
+@Getter
 public enum SubscriptionPeriod {
     TWELVE("12개월"), TWENTY_FOUR("24개월");
 
