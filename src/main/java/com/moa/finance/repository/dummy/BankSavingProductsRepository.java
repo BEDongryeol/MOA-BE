@@ -11,13 +11,17 @@ import java.util.List;
 @Repository
 public interface BankSavingProductsRepository extends JpaRepository<BankSavingProducts, Long> {
 
-    // TODO. user가 가지고 있는 적금 상품은 제외한 상품만 보여주기
-    // 사용자가 가입한 군적금상품 조회
-
+    // [최고금리순] 사용자가 가입가능한 군적금상품 조회
     @Query(value = "select b from BankSavingProducts b " +
-                   "where b.bank.id not in (:bankIds)")
-    List<BankSavingProducts> findSavingProducts(@Param("bankIds") List<Long> bankIds);
+                   "where b.bank.id not in (:bankIds) " +
+                   "order by b.highestInterest desc")
+    List<BankSavingProducts> findHighInterestProducts(@Param("bankIds") List<Long> bankIds);
 
+    // [기본금리순] 사용자가 가입가능한 군적금상품 조회
+    @Query(value = "select b from BankSavingProducts b " +
+                   "where b.bank.id not in (:bankIds) " +
+                   "order by b.basicInterest desc")
+    List<BankSavingProducts> findBasicInterestProducts(@Param("bankIds") List<Long> bankIds);
 
     // 최고금리순 데이터 조회
     @Query(value = "select s from BankSavingProducts s " +
@@ -26,7 +30,7 @@ public interface BankSavingProductsRepository extends JpaRepository<BankSavingPr
 
     // 일반금리순 데이터 조회
     @Query(value = "select s from BankSavingProducts s " +
-            "order by s.basicInterest desc")
+                   "order by s.basicInterest desc")
     List<BankSavingProducts> findProductsByBasic();
 
 }

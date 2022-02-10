@@ -1,6 +1,6 @@
-package com.moa.finance.dto;
+package com.moa.finance.dto.response;
 
-import com.moa.meta.AccountType;
+import com.moa.constant.AccountType;
 import lombok.Getter;
 import lombok.Setter;
 
