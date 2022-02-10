@@ -2,6 +2,8 @@ package com.moa.user.service;
 
 import com.moa.finance.vo.finance.Account;
 import com.moa.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import com.moa.user.vo.User;
 import com.moa.user.vo.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
 
     /**
      * Spring Security 필수 메소드 구현
