@@ -1,6 +1,6 @@
 package com.moa.finance.vo.dummy;
 
-import com.moa.meta.SubscriptionPeriod;
+import com.moa.constant.SubscriptionPeriod;
 import lombok.Getter;
 import lombok.ToString;
 

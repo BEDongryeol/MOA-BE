@@ -24,10 +24,10 @@ public class BankAccount {
     @Embedded
     private Account account;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Bank bank;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<BankTransactionHistory> histories = new ArrayList<>();
 

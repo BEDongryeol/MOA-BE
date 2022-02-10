@@ -40,7 +40,7 @@ class UserAccountRepositoryTest {
                 userAccount.setAccount(bankAccount.getAccount());
                 userAccount.setBank(bankAccount.getBank());
                 userAccount.addUserAccount(user);
-                userAccountRepository.save(userAccount);
+//                userAccountRepository.save(userAccount);
                 // UserAccount.account.histories 가 이미 프록시로 관리되고 있는데
                 // userAccount 에 추가해버리면 이미 프록시로 관리되는게 추가되는 거니까?
             }
@@ -66,11 +66,18 @@ class UserAccountRepositoryTest {
                 userAccount.setAccount(bankAccount.getAccount());
                 userAccount.setBank(bankAccount.getBank());
                 userAccount.addUserAccount(user);
-                userAccountRepository.save(userAccount);
+//                userAccountRepository.save(userAccount);
             }
         }
         System.out.println("==========================");
 
         userAccountRepository.findSignedBankId(1L, "장병내일준비적금").forEach(System.out::println);
+    }
+
+    @DisplayName("3. 유저가 가입한 적금 상품들 조회")
+    @Test
+    @Transactional
+    void getSavingsOfUserTest(){
+        userAccountRepository.findSignedSavingProducts(1L, "장병내일준비적금").forEach(System.out::println);
     }
 }

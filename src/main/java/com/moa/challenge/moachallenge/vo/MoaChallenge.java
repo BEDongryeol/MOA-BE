@@ -12,6 +12,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class MoaChallenge {
     @Builder.Default
     private Integer secondbetKey = 0;           // 두번째옵션선택한키개수
     private String challengeState;              // 챌린지 진행상태(완료, 진행)
-    private SimpleDateFormat eDate;             // 마감시간
+    private LocalDateTime eDate;             // 마감시간
     private boolean winner;                     // 승리여부
 
     //private String moaChallengeBoxUrl;          // 메인 챌린지 탭에서 박스모양 있는 이미지
