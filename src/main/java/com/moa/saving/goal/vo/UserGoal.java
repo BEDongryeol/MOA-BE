@@ -1,5 +1,6 @@
 package com.moa.saving.goal.vo;
 
+import com.moa.constant.AccountState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,15 +37,13 @@ public class UserGoal {
     private String category;                                // 카테고리(예외적으로 군적금 = '군적금', 비상금 = '비상금')
     private String goalState;                               // 관련 요청이 들어왔을때 성공 실패 유무
 
-    // 출금 계좌는 유저가 가지고 있는(연동)계좌에서 선택한다. , 자동이체일때는 default값(장병내일준비적금) 지정 필요
-    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JoinColumn(name = "account_id")
-    //private List<Account> accounts = new ArrayList<>();
-
     private String bankName;    // 은행이름
     private String productName; // 적금이름
-    private String accountName; // 계좌번호
+    private String accountNumber; // 계좌번호
     private BigDecimal accountCurrentAmount; // 잔액
     private String backImageUrl;    // 은행 로고 이미지주소
+
+    @Enumerated(value = EnumType.STRING)
+    private AccountState accountState = AccountState.연동;
 
 }
