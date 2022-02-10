@@ -1,21 +1,16 @@
 package com.moa.finance.vo.finance;
 
-import com.moa.finance.vo.dummy.BankAccount;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.*;
+import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
 @Setter
+@ToString
 public class UserTransactionHistory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private BankAccount account;
+
     private BigDecimal amount;
     private BigDecimal balance;
     private String memo;
