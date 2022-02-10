@@ -20,5 +20,5 @@ public class MoaChallengeController {
     public List getMoaChallengesList() {
             return moaChallengeService.getMoaChallengeList();
     }
-    
+
 }
