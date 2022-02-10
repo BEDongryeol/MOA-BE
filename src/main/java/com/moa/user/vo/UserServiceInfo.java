@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 public class UserServiceInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String serviceNum;
@@ -30,6 +30,8 @@ public class UserServiceInfo {
     @OneToOne
     @JoinColumn(name = "USER_ID")           //군번으로 매핑해야 함
     private User user;
+
+
 
 
 }
