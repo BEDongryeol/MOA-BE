@@ -1,6 +1,7 @@
 package com.moa.user.vo;
 
 import com.moa.challenge.mychallenge.vo.MyChallenge;
+import com.moa.finance.vo.finance.RegistrationManagement;
 import com.moa.finance.vo.finance.UserAccount;
 import lombok.*;
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class User {
     private String phoneNum;                //
 
     @OneToMany(mappedBy = "user")           //주인은 account가 되고, ,account에서 JoinColumn을 해준다.
+    @ToString.Exclude
     private List<UserAccount> userAccount = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -41,7 +43,14 @@ public class User {
 
     @OneToMany                             //주인은 myChallange가 되고, ,myChallange에서 JoinColumn을 해준다.
     @JoinColumn(name = "mychallange_id")
-    private List<MyChallenge> mychallenge = new ArrayList<>();
+    @ToString.Exclude
+    private List<MyChallenge> myChallenge = new ArrayList<>();
+
+    // 02-08 / 20:18 정인우 추가
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "REGISTRATION_MANAGEMENT_ID")
+    @ToString.Exclude
+    private List<RegistrationManagement> registrationManagement = new ArrayList<>();
 
 // 내 보관함(나의 리워드) 이건 지금 안하기루.
 }
