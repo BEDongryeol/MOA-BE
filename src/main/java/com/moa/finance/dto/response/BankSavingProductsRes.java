@@ -1,27 +1,22 @@
-package com.moa.finance.vo.dummy;
+package com.moa.finance.dto.response;
 
 import com.moa.constant.SubscriptionPeriod;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
+@Setter
 @Getter
-@ToString
-public class BankSavingProducts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BankSavingProductsRes {
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "BANK_ID")
-    private Bank bank;
+    private Long bankId;
+    private String bankName;
+    private String bankImageUrl;
     private String productName;
     private BigDecimal highestInterest;
     private BigDecimal basicInterest;
     private String amountExplanation;
     private String subscriptionPeriod = SubscriptionPeriod.TWELVE.getValue();
     private String subscriptionLimit;
-
 }

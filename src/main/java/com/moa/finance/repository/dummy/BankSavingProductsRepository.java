@@ -19,8 +19,8 @@ public interface BankSavingProductsRepository extends JpaRepository<BankSavingPr
 
     // [기본금리순] 사용자가 가입가능한 군적금상품 조회
     @Query(value = "select b from BankSavingProducts b " +
-            "where b.bank.id not in (:bankIds) " +
-            "order by b.basicInterest desc")
+                   "where b.bank.id not in (:bankIds) " +
+                   "order by b.basicInterest desc")
     List<BankSavingProducts> findBasicInterestProducts(@Param("bankIds") List<Long> bankIds);
 
     // 최고금리순 데이터 조회
@@ -30,7 +30,7 @@ public interface BankSavingProductsRepository extends JpaRepository<BankSavingPr
 
     // 일반금리순 데이터 조회
     @Query(value = "select s from BankSavingProducts s " +
-            "order by s.basicInterest desc")
+                   "order by s.basicInterest desc")
     List<BankSavingProducts> findProductsByBasic();
 
 }

@@ -3,7 +3,7 @@ package com.moa.finance.repository.dummy;
 import com.moa.finance.vo.dummy.BankTransactionHistory;
 import com.moa.finance.vo.finance.Account;
 import com.moa.finance.vo.dummy.BankAccount;
-import com.moa.meta.AccountType;
+import com.moa.constant.AccountType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

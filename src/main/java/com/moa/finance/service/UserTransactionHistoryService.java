@@ -24,7 +24,7 @@ public class UserTransactionHistoryService {
     public CompletableFuture run(Long userId) {
         return new AsyncResult(getTransactionHistory(userId)).completable();
     }
-
+    // TODO. AccountService와 중복
     @Cacheable(value = "transactionHistoryCache")
     public List<UserTransactionHistory> getTransactionHistory(Long userId){
         log.info("Async Running");
