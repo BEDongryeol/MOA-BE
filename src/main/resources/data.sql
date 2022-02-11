@@ -65,3 +65,9 @@ INSERT INTO REGISTRATION_MANAGEMENT (`ACCOUNT_NUMBER`, `ACCOUNT_NICKNAME`, `PASS
 
 -- 군인정보 (UserServiceInfo)
 -- INSERT INTO USER_SERVICE_INFO (`END_DAY`, `MILITARY_UNIT`, `RANK`, `SERVICE_DAY`, `SERVICE_NUM`, `START_DAY`) VALUES ()
+
+-- 모아챌린지 등록(moachallenge)
+INSERT INTO moachallenge(`ID`,`CHALLENGE_COUNT`, `CHALLENGE_KEY_SUM` ,`CHALLENGE_STATE`,`FIRSTBET_KEY`, `SECONDBET_KEY`,`CHALLENGE_NAME`, `MAIN_CHALLENGE_URL`, `FIRST_DETAIL_CHALLENGE_URL`, `FIRST_DETAIL_CHALLENGE_NAME`, `SECOND_DETAIL_CHALLENGE_URL`, `SECOND_DETAIL_CHALLENGE_NAME`, `E_DATE`, `WINNER`)
+VALUES('1', 0 , 0, '진행', 0, 0, '프리미어리그 경기 승자는?', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/메인썸네일1.png', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/맨시티.png', '맨시티', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/리버풀.png','리버풀', '2022-02-06 21:00:00', false);
+--INSERT INTO moachallenge(`ID`,`CHALLENGE_COUNT`, `CHALLENGE_KEY_SUM` ,`CHALLENGE_STATE`,`FIRSTBET_KEY`, `SECONDBET_KEY`,`CHALLENGE_NAME`, `MAIN_CHALLENGE_URL`, `FIRST_DETAIL_CHALLENGE_URL`, `FIRST_DETAIL_CHALLENGE_NAME`, `SECOND_DETAIL_CHALLENGE_URL`, `SECOND_DETAIL_CHALLENGE_NAME`, `E_DATE`, `WINNER`)
+--VALUES('2', 0 , 0, '진행', 0, 0, '금주 뮤직뱅크 1위는?', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/메인썸네일2.png', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/아이유.png', '아이유', 'https://cdn.jsdelivr.net/gh/BuenCamino3rd/test/image/BTS.png','BTS', '2022-02-06 21:00:00', false);

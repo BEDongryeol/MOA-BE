@@ -1,13 +1,17 @@
 package com.moa.challenge.mychallenge.controller;
 
+import com.moa.challenge.moachallenge.dto.MoaChallengeResponseDto;
+import com.moa.challenge.moachallenge.service.MoaChallengeService;
 import com.moa.challenge.mychallenge.dto.MyChallengeBetCancleDto;
 import com.moa.challenge.mychallenge.dto.MyChallengeBetAttendDto;
 import com.moa.challenge.mychallenge.dto.MyChallengeBetUpdateDto;
 import com.moa.challenge.mychallenge.dto.MyChallengeResponseDto;
 import com.moa.challenge.mychallenge.service.MyChallengeService;
+import com.moa.user.vo.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -16,12 +20,11 @@ import java.util.List;
 public class MyChallengeController {
 
     private final MyChallengeService myChallengeService;
+    private final MoaChallengeService moaChallengeService;
 
     // 배팅 참여
     @PutMapping("/attend/{id}")
     public String attendBet(@RequestParam(name = "id", required = false) Long id, MyChallengeBetAttendDto requestDto) {
-        // dto를 entity화 해서 repository의 save를 통해 db에 저장
-        // 저장 후 "redirect:/compete" 반환
         try{
             return myChallengeService.attendBet(id, requestDto);
         }catch (Exception e){
@@ -49,15 +52,10 @@ public class MyChallengeController {
         }
     }
 
-    // 배팅 조회
-    @GetMapping("/detail/{id}")
-    public MyChallengeResponseDto getBetDetail(@PathVariable Long id) {
-        return myChallengeService.getBetDetail(id);
-    }
-
     // 내 챌린지 리스트 조회
-    @GetMapping("/mychallenges")
-    public List getMyChallengeList() {
-        return myChallengeService.getMyChallengeList();
+    @GetMapping("/mychallenges/")
+    public List getMyChallengeList(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return myChallengeService.getMyChallengeList(user.getId());
     }
 }
