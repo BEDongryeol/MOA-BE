@@ -1,5 +1,6 @@
 package com.moa.finance.repository.finance;
 
+import com.moa.finance.dto.response.WithdrawalAccountRes;
 import com.moa.finance.vo.finance.UserAccount;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
@@ -26,6 +26,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long> 
                    "and u.user.id = :userId ")
     List<Long> findSignedBankId(@Param("userId") Long userId,
                                 @Param("productName") String productName);
+
 
     @Query(value = "select u from UserAccount u " +
                    "where u.account.productName = :productName " +

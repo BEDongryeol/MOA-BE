@@ -29,10 +29,11 @@ public class MyChallenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;                                // id
 
-    // 유저 아이디 (UserDB의 id값을 가져온다.) , myChallengeId와 userId는 다:1
-    @ManyToOne
-    @JoinColumn(name="mochallenge_id")
-    private MoaChallenge moaChallenge;
+    // 유저 아이디 (User의 id값을 가져온다.) , myChallengeId와 userId는 다:1
+
+//    @ManyToOne
+//    @JoinColumn(name="mochallenge_id")
+//    private MoaChallenge moaChallenge;
 
     private Integer myChallengeKey;                 // 배팅한 열쇠
     private boolean mySelected;                     // 선택지
@@ -46,5 +47,7 @@ public class MyChallenge {
         this.mySelected = mySelected;
         this.myChallengeBetTimer = myChallengeBetTimer;
     }
+
+    // 배팅 참여할때 첫번째 선택지에 배팅한 숫자
 
 }

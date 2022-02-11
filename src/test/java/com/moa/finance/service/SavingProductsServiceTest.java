@@ -21,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +56,7 @@ class SavingProductsServiceTest {
         request.setSavingType("자동이체");
         request.setPayment(BigDecimal.valueOf(100000));
         request.setSubscriptionPeriod(8);
-        request.setPassword(1234);
+        request.setPassword(1234L);
 
         StringBuilder sb = new StringBuilder();
         sb.append((int)(Math.random()*(199-100+1)+100));
@@ -78,7 +79,7 @@ class SavingProductsServiceTest {
         request.setSavingType("자동이체");
         request.setPayment(BigDecimal.valueOf(100000));
         request.setSubscriptionPeriod(8);
-        request.setPassword(1234);
+        request.setPassword(1234L);
 
         System.out.println(savingProductsService.signUpForSavingProducts(user, request));
     }
@@ -86,7 +87,7 @@ class SavingProductsServiceTest {
     @DisplayName("3. 가입 시 생성되는 객체 조회 테스트")
     @Test
     @Transactional
-    void signUpLogicTest(){
+    void signUpLogicTest() throws ExecutionException, InterruptedException {
 
         User user = userRepository.findById(1L).orElseThrow();
         ProductSignUpReq request = new ProductSignUpReq();
@@ -94,7 +95,7 @@ class SavingProductsServiceTest {
         request.setSavingType("자동이체");
         request.setPayment(BigDecimal.valueOf(100000));
         request.setSubscriptionPeriod(8);
-        request.setPassword(1234);
+        request.setPassword(1234L);
 
         BankSavingProducts product = bankSavingProductsRepository.findById(request.getProductId()).orElseThrow(()
                 -> new DBException(ErrorCode.PRODUCT_NOT_FOUND));

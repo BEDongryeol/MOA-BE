@@ -1,19 +1,23 @@
 package com.moa.finance.dto.response;
 
-import com.moa.constant.AccountType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
+@ToString
 public class UserAccountRes {
-    private Long id;
-    private String accountName;
-    private String accountNumber;
-    private String bankName;
-    private BigDecimal currentAmount;
-    private String owner;
-    private AccountType accountType;
+    private Long userAccountId;
+    private String bankImageUrl;
+    private String accountNickname;
+    private Long currentAmount;
+    private Long goalAmount;
+    private String category;
+    private LocalDateTime createdDate;
+    private LocalDateTime expirationDate;
 }

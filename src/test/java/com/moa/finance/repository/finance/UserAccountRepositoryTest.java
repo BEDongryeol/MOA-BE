@@ -27,7 +27,11 @@ class UserAccountRepositoryTest {
     @Transactional
     void userAccountLoadingTest(){
         User user = userRepository.getById(1L);
-        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(user.getName(), user.getBirthDate());
+        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(
+                user.getName(),
+                user.getBirthDate(),
+                "나라사랑",
+                "장병");
         bankAccounts.forEach(System.out::println);
 
         System.out.println("==========================");
@@ -54,7 +58,11 @@ class UserAccountRepositoryTest {
     @Transactional
     void selectUserSavingProductsTest(){
         User user = userRepository.getById(1L);
-        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(user.getName(), user.getBirthDate());
+        List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(
+                user.getName(),
+                user.getBirthDate(),
+                "나라사랑",
+                "장병");
         bankAccounts.forEach(System.out::println);
 
         System.out.println("==========================");

@@ -29,7 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()//csrf 토큰 비활성화
+
+        http
+                .csrf().disable()//csrf 토큰 비활성화
+
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/signup", "/user", "/moa").permitAll() // 누구나 접근 허용
                 .and()
