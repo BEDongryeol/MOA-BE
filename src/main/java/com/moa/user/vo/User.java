@@ -1,6 +1,7 @@
 package com.moa.user.vo;
 
 import com.moa.challenge.mychallenge.vo.MyChallenge;
+import com.moa.finance.dto.response.WithdrawalAccountRes;
 import com.moa.finance.vo.finance.RegistrationManagement;
 import com.moa.finance.vo.finance.UserAccount;
 import lombok.*;
@@ -52,12 +53,11 @@ public class User implements UserDetails {
     @ToString.Exclude
     private List<MyChallenge> myChallenge = new ArrayList<>();
 
-    // 02-08 / 20:18 정인우 추가
+    // 02-11 / 13:15 정인우 수정
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "REGISTRATION_MANAGEMENT_ID")
+    @JoinColumn(name = "ID")
     @ToString.Exclude
     private List<RegistrationManagement> registrationManagement = new ArrayList<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
