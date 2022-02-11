@@ -24,6 +24,7 @@ http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3
             <ttl unit="seconds">600</ttl>
         </expiry>
         <heap>50</heap>
+
     </cache-template>
 
     <cache alias="savingProductsCache" uses-template="defaultTemplate"/>
