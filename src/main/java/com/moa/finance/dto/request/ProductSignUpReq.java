@@ -29,7 +29,7 @@ public class ProductSignUpReq {
     // 비밀번호
     @Min(value = 0L)
     @Max(value = 9999L)
-    private int password;
+    private Long password;
 
     private String accountNickname = "";
 
