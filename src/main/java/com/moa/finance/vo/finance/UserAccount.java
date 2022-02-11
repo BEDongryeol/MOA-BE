@@ -1,6 +1,7 @@
 package com.moa.finance.vo.finance;
 
 import com.moa.constant.AccountRegistrationState;
+import com.moa.constant.SavingType;
 import com.moa.finance.vo.dummy.Bank;
 import com.moa.finance.vo.dummy.BankTransactionHistory;
 import com.moa.user.vo.User;
@@ -34,15 +35,18 @@ public class UserAccount {
     @Embedded
     private Account account;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WITHDRAWAL_ACCOUNT_ID")
+    @ToString.Exclude
+    private UserAccount fromAccount;
+
     private String accountNickname = "";
+
+    private String savingType = SavingType.자동이체.name();
 
     @Column(name = "ACCOUNT_STATE")
     @Enumerated(value = EnumType.STRING)
     private AccountRegistrationState accountRegistrationState = AccountRegistrationState.연동;
-
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    @ToString.Exclude
-    private List<BankTransactionHistory> histories = new ArrayList<>();
 
     public void addUserAccount(User user){
         List<UserAccount> userAccount = user.getUserAccount();
