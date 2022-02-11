@@ -13,6 +13,8 @@ import java.util.List;
 @Setter
 @ToString
 public class LinkedAccountRes extends AccountDetailRes {
+    private String fromBankName;
+    private String fromProductName;
     private Long currentAmount;
     private Long goalAmount;
     private String accountNumber;
@@ -21,13 +23,18 @@ public class LinkedAccountRes extends AccountDetailRes {
     private List<UserTransactionHistory> transactionHistories;
 
     @Builder
-    public LinkedAccountRes(String category, String accountNickname, String bankName, String bankImageUrl, String productName, BigDecimal currentAmount, BigDecimal goalAmount, String accountNumber, LocalDateTime createdDate, LocalDateTime expirationDate, List<UserTransactionHistory> transactionHistories) {
-        super(category, accountNickname, productName, bankName, bankImageUrl);
+    public LinkedAccountRes(Long fromAccountId, String category, String accountNickname, String bankName, String bankImageUrl,
+                            String productName, BigDecimal currentAmount, BigDecimal goalAmount, String accountNumber,
+                            LocalDateTime createdDate, LocalDateTime expirationDate, List<UserTransactionHistory> transactionHistories,
+                            String fromBankName, String fromProductName) {
+        super(fromAccountId, category, accountNickname, productName, bankName, bankImageUrl);
         this.currentAmount = currentAmount.longValue();
         this.goalAmount = goalAmount.longValue();
         this.accountNumber = accountNumber;
         this.createdDate = createdDate;
         this.expirationDate = expirationDate;
         this.transactionHistories = transactionHistories;
+        this.fromBankName = fromBankName;
+        this.fromProductName = fromProductName;
     }
 }
