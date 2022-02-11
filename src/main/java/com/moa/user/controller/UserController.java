@@ -2,6 +2,7 @@ package com.moa.user.controller;
 
 import com.moa.user.service.UserService;
 import com.moa.user.vo.User;
+import com.moa.user.vo.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/moa")
 public class UserController {
@@ -41,12 +42,29 @@ public class UserController {
 //
 //    return"redirect:/login";
 //
+    //회원가입
+    @GetMapping("/join")
+    public String joinpage() {
+        return "join";
+    }
 
+    @PostMapping("/join")
+    public String signup(UserDto userDto) { // 회원 추가
+        userService.save(userDto);
+        return "redirect:/login";
+    }
+
+    //로그인
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    //로그아웃
     @GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
     }
-
 
 }
