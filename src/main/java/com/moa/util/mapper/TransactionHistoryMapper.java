@@ -7,6 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 @Mapper
 public interface TransactionHistoryMapper {
@@ -16,8 +17,8 @@ public interface TransactionHistoryMapper {
     default UserTransactionHistory toUser(BankTransactionHistory bank){
 
         UserTransactionHistory userTransactionHistory = new UserTransactionHistory();
-
-//        userTransactionHistory.setAccount(bank.getAccount().getAccount());
+        userTransactionHistory.setId(bank.getId());
+        userTransactionHistory.setUserAccountId(bank.getAccount().getId());
         userTransactionHistory.setTransactionDate(bank.getTransactionDate());
         userTransactionHistory.setAmount(bank.getAmount());
         userTransactionHistory.setBalance(bank.getBalance());
