@@ -1,5 +1,6 @@
 package com.moa.challenge.mychallenge.dto;
 
+import com.moa.challenge.moachallenge.vo.MoaChallenge;
 import com.moa.challenge.mychallenge.vo.MyChallenge;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,11 +29,27 @@ public class MyChallengeBetAttendDto {
     }
 
     // request dto로 받은 myChallenge 객체를 entity 화 하여 저장하는 용도
-    public MyChallenge toEntity() {
+    public MyChallenge toMyChallengeEntity() {
         return MyChallenge
                 .builder()
                 .myChallengeKey(myChallengeKey)
                 .myChallengeBetTimer(myChallengeBetTimer)
+                .build();
+    }
+
+    // 조건에 따라 moaChallenge 객체를 entity 화 하여 저장하는 용도 (왼쪽을 선택한 키값에 대한 MoaChallenge entity에 저장)
+    public MoaChallenge toMoaChallengeFirstKeyEntity() {
+        return MoaChallenge
+                .builder()
+                .firstbetKey(myChallengeKey)
+                .build();
+    }
+
+    // 조건에 따라 moaChallenge 객체를 entity 화 하여 저장하는 용도
+    public MoaChallenge toMoaChallengeSecondKeyEntity() {
+        return MoaChallenge
+                .builder()
+                .firstbetKey(myChallengeKey)
                 .build();
     }
 }

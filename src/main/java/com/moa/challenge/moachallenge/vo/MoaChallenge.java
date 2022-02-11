@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Formula;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -47,15 +48,21 @@ public class MoaChallenge {
     private Integer firstbetKey = 0;            // 첫번째옵션선택한키개수
     @Builder.Default
     private Integer secondbetKey = 0;           // 두번째옵션선택한키개수
-    private String challengeState;              // 챌린지 진행상태(완료, 진행)
-    private LocalDateTime eDate;             // 마감시간
-    private boolean winner;                     // 승리여부
+    @Builder.Default
+    private String challengeState = "진행";              // 챌린지 진행상태(완료, 진행)
+    @DateTimeFormat(pattern = "y-MM-dd HH:mm:ss")
+    private LocalDateTime eDate;                // 마감시간
+    @Builder.Default
+    private boolean winner = false;             // 승리여부
 
     //private String moaChallengeBoxUrl;          // 메인 챌린지 탭에서 박스모양 있는 이미지
 
-    //@Formula("(select count(*) from mychallenge myc where myc.id = id)")
-    private Integer challengeCount;             // 참석자수 (MyChallenge에서 받아야됨)
-    //@Formula(("(select sum(moac.firstbetKey + moac.secondbetKey) from moahallenge moac where myc.id = id"))
-    private Integer challengeKeySum;            // 참석자들이 투표한 총 배팅 수 (MyChallenge에서 받아야됨)
+    @Column(name = "challengeCount")
+    @Builder.Default
+    private Integer challengeCount = 0;             // 참석자수 (MyChallenge에서 받아야됨)
+
+    //@Formula(("(select sum(moac.firstbetKey + moac.secondbetKey) from moahallenge"))
+    @Builder.Default
+    private Integer challengeKeySum = 0;            // 참석자들이 투표한 총 배팅 수 (MyChallenge에서 받아야됨)
 
 }
