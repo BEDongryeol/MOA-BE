@@ -26,6 +26,7 @@ public class MyChallengeResponseDto {
         this.myChallengeBetTimer = myChallengeBetTimer;
     }
 
+
     public MyChallengeResponseDto(MyChallenge entity) {
     }
 }

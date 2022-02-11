@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AccountDetailRes {
-
+    protected Long fromAccountId;
     protected String category;
     protected String accountNickname;
     protected String productName;

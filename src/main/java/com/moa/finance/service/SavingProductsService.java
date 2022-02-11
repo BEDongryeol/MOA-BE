@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,19 +43,20 @@ public class SavingProductsService {
     // [가입 가능한 적금 상품 조회] 최고 금리순
     @Transactional
     public List<BankSavingProductsRes> getValidProductsByHighest(Long userId){
+        List<Long> bankIds = userAccountRepository.findSignedBankId(userId, "장병내일준비적금");
+        if (bankIds.size() == 0) return new ArrayList<>();
+
         return SavingProductsMapper.INSTANCE.toDtoList(
-                bankSavingProductsRepository.findHighInterestProducts(
-                        userAccountRepository.findSignedBankId(userId, "장병내일준비적금")
-        ));
+                bankSavingProductsRepository.findHighInterestProducts(bankIds));
     }
 
     // [가입 가능한 적금 상품 조회] 기본 금리 순
     @Transactional
     public List<BankSavingProductsRes> getValidProductsByBasic(Long userId){
+        List<Long> bankIds = userAccountRepository.findSignedBankId(userId, "장병내일준비적금");
+        if (bankIds.size() == 0) return new ArrayList<>();
         return SavingProductsMapper.INSTANCE.toDtoList(
-                bankSavingProductsRepository.findBasicInterestProducts(
-                        userAccountRepository.findSignedBankId(userId, "장병내일준비적금")
-        ));
+                bankSavingProductsRepository.findBasicInterestProducts(bankIds));
     }
 
     // [적금 상품 가입]
@@ -68,7 +70,6 @@ public class SavingProductsService {
             - User userAccount 에 추가
             - accountNumber 무작위로 생성
          */
-
         String accountNumber = userAccountRepository.save(userAccountProvider.of(user, product, request))
                 .getAccount().getAccountNumber();
 

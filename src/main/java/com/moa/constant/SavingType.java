@@ -7,6 +7,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum SavingType {
 
-    자동이체, 자유입금;
+    자동이체, 자유입금, 해당없음;
 
 }

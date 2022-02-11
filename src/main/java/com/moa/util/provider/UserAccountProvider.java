@@ -32,6 +32,7 @@ public class UserAccountProvider {
         // 유저 계좌에 등록
         UserAccount userAccount = new UserAccount();
         userAccount.setUser(user);
+        userAccount.setSavingType(request.getSavingType());
         userAccount.setBank(product.getBank());
         userAccount.setAccount(this.createAccount(user, request));
         userAccount.setAccountRegistrationState(AccountRegistrationState.신청);
@@ -47,6 +48,7 @@ public class UserAccountProvider {
                     .owner(user.getName())
                     .birthDate(user.getBirthDate())
                     .productName("장병내일준비적금")
+                    .password(request.getPassword())
                     .goalAmount(goalAmount)
                     .currentAmount(BigDecimal.ZERO)
                     .accountNumber(this.AccountNumberSupplier.get())
@@ -61,6 +63,7 @@ public class UserAccountProvider {
                 .birthDate(user.getBirthDate())
                 .productName("장병내일준비적금")
                 .goalAmount(BigDecimal.ZERO)
+                .password(request.getPassword())
                 .currentAmount(BigDecimal.ZERO)
                 .accountNumber(this.AccountNumberSupplier.get())
                 .accountType(AccountType.예적금)

@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Table(uniqueConstraints = {@UniqueConstraint(
-        name = "useRrConstraint",
+        name = "userConstraint",
         columnNames = {"owner", "birthDate", "accountNumber", "accountType"}
         )})
 public class BankAccount {
@@ -27,7 +27,7 @@ public class BankAccount {
     @ManyToOne(fetch = FetchType.LAZY)
     private Bank bank;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<BankTransactionHistory> histories = new ArrayList<>();
 
