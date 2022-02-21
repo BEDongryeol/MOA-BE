@@ -31,12 +31,12 @@ import java.util.List;
 public class MoaChallenge {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;                             // id
     private String challengeName;               // 챌린지명
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "mychallenge_id")
+    @JoinColumn(name = "id")
     private List<MyChallenge> myChallenges = new ArrayList<>();     // myChallenge 아이디와 1:다
 
     private String mainChallengeUrl;            // 메인챌린지 이미지(URL)

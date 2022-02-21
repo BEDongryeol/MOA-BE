@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @ToString
 @NoArgsConstructor
+@Table(name = "bank")
 public class Bank {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -21,12 +21,12 @@ public interface MoaChallengeRepository extends JpaRepository<MoaChallenge, Long
     List<LocalDateTime> findMoaChallengeByEDate(Long id);
 
     // 기존 투자했던 키 값 가져오기
-    @Query("select u.key from User u where u.id = :id")
+    @Query("select u.keyPoints from User u where u.id = :id")
     List<Integer> findUserByKey();
 
     // 배팅 취소시 유저키 더해주기
     @Modifying
-    @Query("update User u set u.key = u.key + ?2 where u.id = ?1")
+    @Query("update User u set u.keyPoints = u.keyPoints + ?2 where u.id = ?1")
     int updateUserKey(Long id, Integer key);
 
     // 참석자 수 증가(배팅 참여할 때)

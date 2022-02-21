@@ -38,17 +38,17 @@ class SavingControllerTest {
     private UserRepository userRepository;
     @Autowired
     private SavingProductsService savingProductsService;
-    private MockHttpSession session;
+//    private MockHttpSession session;
 
-    @BeforeEach
-    void initSession() {
-        User user = userRepository.findById(1L).orElseThrow(()
-                -> new DBException(ErrorCode.USER_NOT_FOUND));
-
-        session = new MockHttpSession();
-        session.setAttribute("user", user);
-        System.out.println(user);
-    }
+//    @BeforeEach
+//    void initSession() {
+//        User user = userRepository.findById(1L).orElseThrow(()
+//                -> new DBException(ErrorCode.USER_NOT_FOUND));
+//
+//        session = new MockHttpSession();
+//        session.setAttribute("user", user);
+//        System.out.println(user);
+//    }
 
     @DisplayName("1. [최고 금리 순] 유저가 가입 가능한 상품 출력")
     @Test
@@ -56,7 +56,9 @@ class SavingControllerTest {
     void getValidProductsByHighestTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/saving/products/high")
-                        .session(session).accept(MediaType.APPLICATION_JSON));
+//                        .session(session)
+                        .header("X-USER-ID", "1")
+                        .accept(MediaType.APPLICATION_JSON));
         result.andDo(print());
     }
 
@@ -66,7 +68,9 @@ class SavingControllerTest {
     void getValidProductsByBasicTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/saving/products/basic")
-                        .session(session).accept(MediaType.APPLICATION_JSON));
+//                        .session(session)
+                        .header("X-USER-ID", "1")
+                        .accept(MediaType.APPLICATION_JSON));
         result.andDo(print());
     }
 
@@ -81,7 +85,8 @@ class SavingControllerTest {
                         .param("subscriptionPeriod", "6")
                         .param("payment", "100000")
                         .param("password", "1234")
-                        .session(session)
+                        .header("X-USER-ID", "1")
+//                        .session(session)
                         .accept(MediaType.APPLICATION_JSON));
         result.andDo(print())
                 .andExpect(status().isCreated());
@@ -93,7 +98,8 @@ class SavingControllerTest {
     void getMilitaryAccountsTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/saving/accounts/")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andDo(print())
@@ -116,7 +122,8 @@ class SavingControllerTest {
 
         ResultActions result = mockMvc.perform(
                 get("/saving/accounts/3")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andDo(print())
@@ -129,7 +136,8 @@ class SavingControllerTest {
     void saveExtraMoneyTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 post("/saving/accounts/1/save")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .param("amount", "30000")
                         .accept(MediaType.APPLICATION_JSON));
 
@@ -143,7 +151,8 @@ class SavingControllerTest {
     void updateAccountNicknameTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 put("/saving/accounts/2/accountNickname")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .param("accountNickname", "유럽여행")
                         .accept(MediaType.APPLICATION_JSON));
 
@@ -157,7 +166,8 @@ class SavingControllerTest {
     void updateAutoTransferTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 put("/saving/accounts/1/savingType")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .param("fromAccountId", "3")
                         .param("savingType", "자동이체")
                         .param("payment", "30000")
@@ -173,7 +183,8 @@ class SavingControllerTest {
     void updateFreeTransferTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 put("/saving/accounts/1/savingType")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .param("fromAccountId", "3")
                         .param("savingType", "자유입금")
                         .param("payment", "30000")
@@ -189,7 +200,8 @@ class SavingControllerTest {
     void terminateTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 delete("/saving/accounts/1")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .param("password", "1234")
                         .accept(MediaType.APPLICATION_JSON));
 
@@ -203,7 +215,8 @@ class SavingControllerTest {
     void accountLinkTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/saving/link")
-                        .session(session)
+//                        .session(session)
+                        .header("X-USER-ID", "1")
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andDo(print())

@@ -23,7 +23,6 @@ import java.util.List;
 @DynamicUpdate
 @DynamicInsert
 @Builder
-@Table(name = "mychallenge")
 public class MyChallenge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

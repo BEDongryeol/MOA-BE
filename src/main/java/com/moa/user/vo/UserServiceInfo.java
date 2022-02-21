@@ -22,7 +22,7 @@ public class UserServiceInfo {
 
     private LocalDate serviceDay;           // 복무일
 
-    private String rank;                    // 계급
+    private String militaryRank;                    // 계급
 
     private String militaryUnit;            // 부대 정보
 

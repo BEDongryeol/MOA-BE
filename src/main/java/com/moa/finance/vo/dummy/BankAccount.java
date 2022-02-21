@@ -12,7 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Table(uniqueConstraints = {@UniqueConstraint(
+@Table(name = "bank_account",
+        uniqueConstraints = {@UniqueConstraint(
         name = "userConstraint",
         columnNames = {"owner", "birthDate", "accountNumber", "accountType"}
         )})

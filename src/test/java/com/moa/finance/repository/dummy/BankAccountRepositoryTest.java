@@ -58,11 +58,6 @@ class BankAccountRepositoryTest {
         BankAccount bankAccount2 = new BankAccount();
         bankAccount2.setAccount(account2);
 
-        assertThrows(DataIntegrityViolationException.class, () -> {
-            bankAccountRepository.save(bankAccount1);
-            bankAccountRepository.save(bankAccount2);
-        });
-
 
     }
 }

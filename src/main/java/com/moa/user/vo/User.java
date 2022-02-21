@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "USER_SERVICE_INFO_ID")    //군인정보와 1:1연결
     private UserServiceInfo userServiceInfo;        //UserService class생성하고 entity 추가하기, 그리고 maaped by
 
-    private Integer key;                    //
+    private Integer keyPoints;                    //
 
     private String auth;
 
@@ -50,7 +50,7 @@ public class User implements UserDetails {
 //    private List<UserGoal> userGoal = new ArrayList<>();
 
     @OneToMany                             //주인은 myChallange가 되고, ,myChallange에서 JoinColumn을 해준다.
-    @JoinColumn(name = "mychallange_id")
+    @JoinColumn(name = "id")
     @ToString.Exclude
     private List<MyChallenge> myChallenge = new ArrayList<>();
 

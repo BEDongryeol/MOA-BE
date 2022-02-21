@@ -87,7 +87,7 @@ class SavingProductsServiceTest {
     @DisplayName("3. 가입 시 생성되는 객체 조회 테스트")
     @Test
     @Transactional
-    void signUpLogicTest() throws ExecutionException, InterruptedException {
+    void signUpLogicTest() {
 
         User user = userRepository.findById(1L).orElseThrow();
         ProductSignUpReq request = new ProductSignUpReq();
@@ -108,7 +108,6 @@ class SavingProductsServiceTest {
         System.out.println(account);
         System.out.println(register);
 
-        System.out.println(accountService.getAccountDetail(1L, 4L));
 
 
     }

@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -27,8 +28,8 @@ public class UserGoal {
     private String savingMode;                              // 저축방법 ("군적금", "목표", "비상금")
     private BigDecimal currentAmount;                       // 현재금액
     private BigDecimal goalAmount;                          // 목표금액
-    private SimpleDateFormat sDate;                         // 시작일 (만기일 계산시 필요)
-    private SimpleDateFormat eDate;                         // 종료일 (만기일 계산시 필요)
+    private LocalDateTime sDate;                         // 시작일 (만기일 계산시 필요)
+    private LocalDateTime eDate;                         // 종료일 (만기일 계산시 필요)
     private String depositMethod;                           // 납입형태(자동이체, 자유입금)
     @Builder.Default
     private String limitCycle = "";                         // 이체방식(매월 10일, 매주 월요일, 매일, 자유입금일땐 "")
@@ -44,6 +45,7 @@ public class UserGoal {
     private String backImageUrl;    // 은행 로고 이미지주소
 
     @Enumerated(value = EnumType.STRING)
+    @Builder.Default
     private AccountState accountState = AccountState.연동;
 
 }
