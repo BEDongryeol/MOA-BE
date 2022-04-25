@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
+public interface BankAccountRepository extends JpaRepository<BankAccount, Long>, BankAccountRepositoryCustom {
 
     // User 이름과 생년월일로 데이터 연동
     // 이름, 생년월일, 계좌이름 (장병, 나라사랑)
