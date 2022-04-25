@@ -12,10 +12,14 @@
 *.zip
 *.tar.gz
 *.rar
-gradle/
 *.bin
 *.lock
 *.html
 .idx
 
 build/
+gradle/
+.gradle/
+.idea/
+.gradle
+dockerfile
