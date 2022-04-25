@@ -26,7 +26,7 @@ class UserAccountRepositoryTest {
     @Test
     @Transactional
     void userAccountLoadingTest(){
-        User user = userRepository.getById(1L);
+        User user = userRepository.findById(1L).get();
         List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(
                 user.getName(),
                 user.getBirthDate(),
@@ -57,7 +57,7 @@ class UserAccountRepositoryTest {
     @Test
     @Transactional
     void selectUserSavingProductsTest(){
-        User user = userRepository.getById(1L);
+        User user = userRepository.findById(1L).get();
         List<BankAccount> bankAccounts = bankAccountRepository.getAccounts(
                 user.getName(),
                 user.getBirthDate(),
