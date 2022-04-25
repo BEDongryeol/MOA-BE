@@ -3,23 +3,22 @@ package com.moa.finance.vo.finance;
 import com.moa.constant.AccountRegistrationState;
 import com.moa.constant.SavingType;
 import com.moa.finance.vo.dummy.Bank;
-import com.moa.finance.vo.dummy.BankTransactionHistory;
 import com.moa.user.vo.User;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @Slf4j
 @ToString
-@EqualsAndHashCode
 public class UserAccount {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -61,4 +60,16 @@ public class UserAccount {
         log.info("\n" + user.getName() + "님의 " + this.account.getAccountNumber() + " 계좌가 등록되었습니다.");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        UserAccount that = (UserAccount) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(account.getAccountNumber());
+    }
 }

@@ -36,6 +36,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")           //주인은 account가 되고, ,account에서 JoinColumn을 해준다.
     @ToString.Exclude
+    @Builder.Default
     private List<UserAccount> userAccount = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -52,12 +53,14 @@ public class User implements UserDetails {
     @OneToMany                             //주인은 myChallange가 되고, ,myChallange에서 JoinColumn을 해준다.
     @JoinColumn(name = "id")
     @ToString.Exclude
+    @Builder.Default
     private List<MyChallenge> myChallenge = new ArrayList<>();
 
     // 02-11 / 13:15 정인우 수정
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID")
     @ToString.Exclude
+    @Builder.Default
     private List<RegistrationManagement> registrationManagement = new ArrayList<>();
 
 

@@ -21,12 +21,14 @@ public class Account {
     private String owner;
 
     private LocalDate birthDate;
+
     @NonNull
     @Min(0L)
     @Max(9999L)
     private Long password;
 
     private String productName;
+
     @Builder.Default
     private BigDecimal goalAmount = BigDecimal.ZERO;
     @Builder.Default
