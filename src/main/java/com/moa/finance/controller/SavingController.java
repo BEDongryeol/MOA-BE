@@ -34,10 +34,7 @@ public class SavingController {
         - 이름, 생년월일, 군 관련 용어를 포함한 상품명 조회
      */
     @GetMapping("/saving/link")
-//    public ResponseEntity<List<UserAccountRes>> linkAccounts(HttpSession session){
     public ResponseEntity<List<UserAccountRes>> linkAccounts(@RequestHeader("X-USER-ID") @NotNull Long userId){
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(accountService.linkMilitaryAccounts(user.getId()));
         return ResponseEntity.status(HttpStatus.OK).body(accountService.linkMilitaryAccounts(userId));
     }
 
@@ -46,9 +43,6 @@ public class SavingController {
      */
     @GetMapping("/saving/products/high")
     public ResponseEntity<List<BankSavingProductsRes>> savingProductGetByHighest(@RequestHeader("X-USER-ID") @NotNull Long userId) throws DBException {
-//    public ResponseEntity<List<BankSavingProductsRes>> savingProductGetByHighest(HttpSession session) throws DBException {
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(savingProductsService.getValidProductsByHighest(user.getId()));
         return ResponseEntity.status(HttpStatus.OK).body(savingProductsService.getValidProductsByHighest(userId));
     }
 
@@ -57,9 +51,6 @@ public class SavingController {
      */
     @GetMapping("/saving/products/basic")
     public ResponseEntity<List<BankSavingProductsRes>> savingProductGetByBasic(@RequestHeader("X-USER-ID") @NotNull Long userId){
-//    public ResponseEntity<List<BankSavingProductsRes>> savingProductGetByBasic(HttpSession session){
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(savingProductsService.getValidProductsByBasic(user.getId()));
         return ResponseEntity.status(HttpStatus.OK).body(savingProductsService.getValidProductsByBasic(userId));
     }
 
@@ -67,10 +58,7 @@ public class SavingController {
         - 자동이체, 자유입금에 따라 별개 로직 적용
      */
     @PostMapping("/saving/products")
-//    public ResponseEntity<ProductSignUpRes> signUpForSavingProduct(HttpSession session, ProductSignUpReq request) {
     public ResponseEntity<ProductSignUpRes> signUpForSavingProduct(@RequestHeader("X-USER-ID") @NotNull Long userId, ProductSignUpReq request) {
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.CREATED).body(savingProductsService.signUpForSavingProducts(user, request));
         User user = userRepository.findById(userId).orElseThrow();
         return ResponseEntity.status(HttpStatus.CREATED).body(savingProductsService.signUpForSavingProducts(user, request));
     }
@@ -79,9 +67,7 @@ public class SavingController {
         - 연동된 상품이 상위로 올라오도록 조회
      */
     @GetMapping("/saving/accounts")
-//    public ResponseEntity<List<UserAccountRes>> getUserAccounts(HttpSession session){
     public ResponseEntity<List<UserAccountRes>> getUserAccounts(@RequestHeader("X-USER-ID") @NotNull Long userId){
-//        User user = (User) session.getAttribute("user");
         return ResponseEntity.status(HttpStatus.OK).body(accountService.getMilitaryAccounts(userId));
     }
 
@@ -90,10 +76,7 @@ public class SavingController {
         - 신청 중인 계좌 : 신청 정보
     */
     @GetMapping("/saving/accounts/{userAccountId}")
-//    public ResponseEntity<AccountDetailRes> getUserAccountDetail(HttpSession session, @PathVariable(value = "userAccountId") Long userAccountId) {
     public ResponseEntity<AccountDetailRes> getUserAccountDetail(@RequestHeader("X-USER-ID") @NotNull Long userId, @PathVariable(value = "userAccountId") Long userAccountId) {
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccountDetail(user.getId(), userAccountId));
         return ResponseEntity.status(HttpStatus.OK).body(accountService.getAccountDetail(userId, userAccountId));
     }
 
@@ -102,10 +85,7 @@ public class SavingController {
         - userAccountId로 계좌 번호를 얻고, 나라사랑카드에서 출금
      */
     @PostMapping("/saving/accounts/{userAccountId}/save")
-//    public ResponseEntity<ExtraSaveRes> saveExtraMoney(HttpSession session, @PathVariable("userAccountId") Long userAccountId, Long amount){
     public ResponseEntity<ExtraSaveRes> saveExtraMoney(@RequestHeader("X-USER-ID") @NotNull Long userId, @PathVariable("userAccountId") Long userAccountId, Long amount){
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(accountService.saveExtraMoney(user.getId(), userAccountId, amount));
         return ResponseEntity.status(HttpStatus.OK).body(accountService.saveExtraMoney(userId, userAccountId, amount));
     }
 
@@ -114,9 +94,7 @@ public class SavingController {
         !!!!!  모으기 테이블에 update 해주기 (Cascade 등으로 설정)
      */
     @PutMapping("/saving/accounts/{userAccountId}/accountNickname")
-//    public ResponseEntity<Boolean> updateAccountNickname(HttpSession session, @PathVariable(value = "userAccountId") Long userAccountId, String accountNickname){
     public ResponseEntity<Boolean> updateAccountNickname(@RequestHeader("X-USER-ID") @NotNull Long userId, @PathVariable(value = "userAccountId") Long userAccountId, String accountNickname){
-//        User user = (User) session.getAttribute("user");
         return ResponseEntity.created(URI.create(String.format("/saving/accounts/%s", userAccountId))).body(accountService.updateAccountNickname(userId, userAccountId, accountNickname));
     }
 
@@ -125,10 +103,7 @@ public class SavingController {
         - 납입액 변경
      */
     @PutMapping("/saving/accounts/{userAccountId}/savingType")
-//    public ResponseEntity<UpdateTransferRes> updateAccount(HttpSession session, @PathVariable(value = "userAccountId") Long userAccountId, UpdateTransferReq request) {
     public ResponseEntity<UpdateTransferRes> updateAccount(@RequestHeader("X-USER-ID") @NotNull Long userId, @PathVariable(value = "userAccountId") Long userAccountId, UpdateTransferReq request) {
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(accountService.updateTransferSetting(user.getId(), userAccountId, request));
         return ResponseEntity.status(HttpStatus.OK).body(accountService.updateTransferSetting(userId, userAccountId, request));
     }
 
@@ -138,10 +113,7 @@ public class SavingController {
             - cascade = CascadeType.ALL, orphanRemoval = true
      */
     @DeleteMapping("/saving/accounts/{userAccountId}")
-//    public ResponseEntity<DeleteAccountRes> deleteMap(HttpSession session, @PathVariable(value = "userAccountId") Long userAccountId, Long password){
     public ResponseEntity<DeleteAccountRes> deleteMap(@RequestHeader("X-USER-ID") @NotNull Long userId, @PathVariable(value = "userAccountId") Long userAccountId, Long password){
-//        User user = (User) session.getAttribute("user");
-//        return ResponseEntity.status(HttpStatus.OK).body(accountService.terminateAccount(user.getId(), userAccountId, password));
         return ResponseEntity.status(HttpStatus.OK).body(accountService.terminateAccount(userId, userAccountId, password));
     }
 }
