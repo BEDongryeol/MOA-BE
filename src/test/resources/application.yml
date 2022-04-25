@@ -1,11 +1,10 @@
 spring:
-  profiles: real
-#  datasource:
-###    url: jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=1;MODE=MYSQL;
-#    url: jdbc:mysql://13.125.206.146:3306/datum?useSSL=false&serverTimezone=UTC
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    username: moa
-#    password: moaproject
+  profiles: test
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/moa
+    driver-class-name: com.h2.Driver
+    username: sa
+    password:
   cache:
     jcache:
       config: classpath:ehcache.xml

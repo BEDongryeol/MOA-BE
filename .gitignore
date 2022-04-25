@@ -17,4 +17,5 @@ gradle/
 *.lock
 *.html
 .idx
+
 build/
