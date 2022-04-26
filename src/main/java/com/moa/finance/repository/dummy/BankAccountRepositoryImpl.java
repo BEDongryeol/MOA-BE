@@ -2,6 +2,7 @@ package com.moa.finance.repository.dummy;
 
 import com.moa.finance.dto.searchCondition.AccountSearchCondition;
 import com.moa.finance.vo.dummy.BankAccount;
+import com.moa.user.vo.User;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -29,6 +30,19 @@ public class BankAccountRepositoryImpl implements BankAccountRepositoryCustom{
                         ownerEq(condition.getOwner()),
                         birthDateEq(condition.getBirthDate()),
                         productNameLike(condition.getProductName1(), condition.getProductName1()))
+                .fetch();
+    }
+
+    @Override
+    public List<BankAccount> getUnlinkedAccounts(User user) {
+        return queryFactory
+                .select(bankAccount)
+                .from(bankAccount)
+                .where(
+                        ownerEq(user.getName()),
+                        birthDateEq(user.getBirthDate()),
+                        productNameLike("장병", "나라사랑")
+                        )
                 .fetch();
     }
 
