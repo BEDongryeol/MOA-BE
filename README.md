@@ -26,6 +26,7 @@ Money Of the Army Backend
 - **[서버]** Docker-compose, AWS EC2
 - **[테스트]** JUnit5
 ---
+## 담당한 파트
 - **금융 관련 ERD 설계 및 구축**
 - **Server 구축 및 배포** (Docker-compose, AWS EC2)
     - Docker 볼륨 매핑을 통한 DB 컨테이너에 더미 데이터 추가
