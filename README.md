@@ -32,6 +32,3 @@ Money Of the Army Backend
     - Docker 볼륨 매핑을 통한 DB 컨테이너에 더미 데이터 추가
     - Docker-compose를 통해 Spring 어플리케이션과 DB 연동
 - **API 개발**
-    - LSP(Liskov Substitution Principle)를 활용한 request에 따라 다른 response 전달
-        - Builder, AllArgsConstructor 활용
-    - Presentational layer와 Service layer의 독립적인 구성을 위해 DTO, Mapper 활용
